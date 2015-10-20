@@ -1,10 +1,14 @@
 #pragma once
 
+#include <iostream>
 #include "IAnimal.hh"
 
 class Armadillo : public IAnimal 
 {
 	public:
-		virtual			~Armadillo();
+		Armadillo();
+		virtual ~Armadillo();
+
+	public:
 		virtual void	scream();
 };

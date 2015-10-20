@@ -118,6 +118,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Armadillo.hh" />
+    <ClInclude Include="IAnimal.hh" />
+    <ClInclude Include="Platypus.hh" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Armadillo.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Platypus.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
