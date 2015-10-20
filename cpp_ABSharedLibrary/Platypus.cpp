@@ -8,7 +8,7 @@ Platypus::~Platypus()
 {
 }
 
-void Platypus::scream()
+void Platypus::scream() const
 {
 	std::cout << "I'm Platypus" << std::endl;
 }

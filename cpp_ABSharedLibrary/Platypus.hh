@@ -10,5 +10,5 @@ class Platypus : public IAnimal
 		~Platypus();
 
 	public:
-		void	scream();
+		void	scream() const;
 };

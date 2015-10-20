@@ -8,7 +8,7 @@ Armadillo::~Armadillo()
 {
 }
 
-void Armadillo::scream()
+void Armadillo::scream() const
 {
 	std::cout << "I'm Armadillo" << std::endl;
 }

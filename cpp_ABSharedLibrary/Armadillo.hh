@@ -10,5 +10,5 @@ class Armadillo : public IAnimal
 		virtual ~Armadillo();
 
 	public:
-		virtual void	scream();
+		virtual void	scream() const;
 };
