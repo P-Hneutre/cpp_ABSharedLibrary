@@ -2,9 +2,9 @@
 
 #include "IAnimal.hh"
 
-class Armadillo : public IAnimal
+class Armadillo : public IAnimal 
 {
 	public:
-		virtual ~Armadillo();
+		virtual			~Armadillo();
 		virtual void	scream();
 };
