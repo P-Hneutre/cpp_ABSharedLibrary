@@ -1,7 +1,7 @@
 #pragma once
 #include "IAnimal.hh"
-class Platypus : public IAnimal {
+class Armadillo : public IAnimal {
 public:
-	virtual ~Platypus();
+	virtual ~Armadillo();
 	virtual void	scream();
 };
