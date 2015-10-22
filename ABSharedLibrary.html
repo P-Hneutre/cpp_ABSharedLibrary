@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>UML</title>
+    </head>
+    <body>
+
+        <h1>Use Cases</h1>
+
+        <img src="doc-files/ABSharedLibrary.svg" title='
+        @startuml doc-files/ABSharedLibrary.svg
+
+        title Abstraction aux Sockets
+
+        interface IDlLoader {
+            open(name : String) -> void
+            close() -> void
+            getInstance() -> T*
+        }
+
+        interface IDlManager {
+            load(name : String) -> void
+            loadAll(nameDir : String) -> void
+            getObject(namelibrary : String, nameObject : String) -> T*
+        }
+
+        abstract class ADlManager {
+            # plugins : map(String, IDlLoader)
+        }
+
+        class UDlLoader {
+
+        }
+
+        class WDlLoader {
+
+        }
+
+        class UDlManager {
+
+        }
+
+        class WDlManager {
+
+        }
+
+        IDlLoader <|-- UDlLoader
+        IDlLoader <|-- WDlLoader
+
+        IDlManager <|-- ADlManager
+        ADlManager <|-- UDlManager
+        ADlManager <|-- WDlManager
+
+        @enduml
+        ' />
+
+    </body>
+</html>
