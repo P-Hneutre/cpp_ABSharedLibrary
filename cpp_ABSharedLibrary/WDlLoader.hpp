@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <stdexcept>
 #include <Windows.h>
 #include "IDlLoader.hpp"
 
