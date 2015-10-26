@@ -1,0 +1,22 @@
+NAME	=	unix_ABSharedLibrary
+
+SRC	=	Armadillo.cpp	\
+		Platypus.cpp \
+		main.cpp
+
+OBJ	=	$(SRC:.cpp=.o)
+
+CFLAGS	=	-W -Wall -g
+
+$(NAME)	:	$(OBJ)
+		g++ -g -o $(NAME) $(OBJ) $(CFLAGS)
+
+all	:	$(NAME)
+
+clean:
+	rm $(OBJ)
+
+fclean: clean
+	rm $(NAME)
+
+re: fclean all
