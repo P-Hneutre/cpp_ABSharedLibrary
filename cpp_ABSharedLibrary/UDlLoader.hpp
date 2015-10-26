@@ -78,7 +78,7 @@ T * UDlLoader<T>::getInstance() const
 {
 	T* (*external_creator)();
 
-	external_creator = reinterpret_cast<T* (*)()>(dlsym(_handle, "load_plugin"));
+	external_creator = reinterpret_cast<T* (*)()>(dlsym(_handle, "getDLLInterface"));
 	if (external_creator == NULL)
 		throw std::runtime_error("Error : dlsym ");
 	return external_creator();

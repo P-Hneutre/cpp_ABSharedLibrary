@@ -14,10 +14,8 @@ void Platypus::scream() const
 	std::cout << "I'm Platypus" << std::endl;
 }
 
-extern "C"
+extern "C" __declspec(dllexport) IAnimal* getDLLInterface()
 {
-	IAnimal* load_plugin()
-	{
-		return new Platypus();
-	}
+	static Platypus g_DLLInterface;
+	return &g_DLLInterface;
 }

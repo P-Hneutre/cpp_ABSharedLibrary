@@ -17,9 +17,9 @@ int	main(int ac, char **av)
 	{
 		IAnimal	*animal_module;
 #ifdef __unix__
-		IDlLoader<IAnimal> *loader = new UDlLoader<IAnimal>("platypus.so");
+		IDlLoader<IAnimal> *loader = new UDlLoader<IAnimal>("DLL.so");
 #elif defined _WIN32
-		IDlLoader<IAnimal> *loader = new WDlLoader<IAnimal>("platypus.dll");
+		IDlLoader<IAnimal> *loader = new WDlLoader<IAnimal>("Armadillo.dll");
 #endif
 		loader->open();
 		animal_module = loader->getInstance();
@@ -30,6 +30,5 @@ int	main(int ac, char **av)
 	{
 		std::cout << e.what() << std::endl;
 	}
-	getchar();
 	return 0;
 }

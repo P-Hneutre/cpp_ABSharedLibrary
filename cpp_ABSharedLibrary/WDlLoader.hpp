@@ -62,7 +62,7 @@ WDlLoader<T>::~WDlLoader()
 template<typename T>
 void WDlLoader<T>::open()
 {
-	_handle = LoadLibrary(_filename.c_str());
+	_handle = LoadLibraryA(_filename.c_str());
 	std::cout << _handle << std::endl;
 	if (_handle == NULL)
 		throw std::runtime_error("Error : dlopen " + _filename);
@@ -81,7 +81,7 @@ T * WDlLoader<T>::getInstance() const
 	typedef T* (*EXTERNAL_CREATOR)();
 	EXTERNAL_CREATOR external_creator;
 
-	external_creator = (EXTERNAL_CREATOR)GetProcAddress(_handle, "load_plugin");
+	external_creator = (EXTERNAL_CREATOR)GetProcAddress(_handle, "getDLLInterface");
 	if (external_creator == NULL)
 	{
 		FreeLibrary(_handle);
