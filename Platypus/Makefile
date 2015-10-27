@@ -10,11 +10,12 @@ all	:	$(NAME)
 
 $(NAME)	:	$(OBJ)
 		g++ $(OBJ) -o $(NAME) --shared
+		mv $(NAME) ../plugins/
 
 clean	:	
 		rm -f $(OBJ)
 
 fclean	:	clean
-		rm -f $(NAME)
+		rm -f ../plugins/$(NAME)
 
 re	:	fclean all
