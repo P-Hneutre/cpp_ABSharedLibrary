@@ -1,5 +1,11 @@
 #pragma once
 
+#ifdef _WIN32
+	#define MODULE_API __declspec(dllexport)
+#else
+	#define MODULE_API
+#endif
+
 class IAnimal
 {
 	public:
