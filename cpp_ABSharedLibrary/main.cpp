@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 #ifdef __unix__
 		IDlLoader<IAnimal> *loader = new UDlLoader<IAnimal>("DLL.so");
 #elif defined _WIN32
-		IDlLoader<IAnimal> *loader = new WDlLoader<IAnimal>("Armadillo.dll");
+		IDlLoader<IAnimal> *loader = new WDlLoader<IAnimal>("Platypus.dll");
 #endif
 		loader->open();
 		animal_module = loader->getInstance();
