@@ -155,6 +155,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Armadillo\Armadillo.vcxproj">
+      <Project>{ca8d989d-b65f-49fc-a6d4-0d1ab19768f6}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Platypus\Platypus.vcxproj">
       <Project>{8ca33b1b-b979-477f-9f2c-4c2f96bcd493}</Project>
     </ProjectReference>
