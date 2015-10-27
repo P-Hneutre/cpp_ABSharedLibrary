@@ -15,7 +15,7 @@ void Armadillo::scream() const
 	std::cout << "I'm Armadillo" << std::endl;
 }
 
-extern "C" __declspec(dllexport) IAnimal* getDLLInterface()
+extern "C" MODULE_API IAnimal* getDLLInterface()
 {
 	static Armadillo g_DLLInterface;
 	return &g_DLLInterface;

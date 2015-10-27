@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	{
 		IAnimal	*animal_module;
 #ifdef __unix__
-		IDlLoader<IAnimal> *loader = new UDlLoader<IAnimal>("DLL.so");
+		IDlLoader<IAnimal> *loader = new UDlLoader<IAnimal>("./Platypus/Platypus.so");
 #elif defined _WIN32
 		IDlLoader<IAnimal> *loader = new WDlLoader<IAnimal>("Platypus.dll");
 #endif
