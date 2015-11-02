@@ -23,11 +23,11 @@ int	main(int ac, char **av)
 #elif defined _WIN32
 		IDlManager<IAnimal> *dl = new WDlManager<IAnimal>();
 #endif
-		dl->load("Armadillo");
-		dl->load("Platypus");
 		dl->loadAll("../plugins/");
 		dl->getObject("Platypus")->scream();
 		dl->getObject("Armadillo")->scream();
+
+		delete dl;
 	}
 	catch (const std::exception& e)
 	{

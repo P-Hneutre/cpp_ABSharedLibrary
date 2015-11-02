@@ -34,7 +34,12 @@ WDlManager<T>::WDlManager()
 template<typename T>
 WDlManager<T>::~WDlManager()
 {
+	/*std::map<std::string, IDlLoader<T>*>::iterator it = _loaders.begin();
 
+	while (it != _loaders.end()) {
+		std::cout << "ok";
+		it->second->close();
+	}*/
 }
 
 template<typename T>
@@ -64,9 +69,7 @@ template<typename T>
 void WDlManager<T>::loadAll(std::string const & dirName)
 {
 	WIN32_FIND_DATA ffd;
-	LARGE_INTEGER filesize;
 	TCHAR szDir[MAX_PATH];
-	TCHAR szFile[MAX_PATH];
 	HANDLE hFind = INVALID_HANDLE_VALUE;
 	size_t length_of_arg;
 	std::wstring stemp = s2ws(dirName);
@@ -88,7 +91,14 @@ void WDlManager<T>::loadAll(std::string const & dirName)
 		{
 			std::wstring arr_w(ffd.cFileName);
 			std::string arr_s(arr_w.begin(), arr_w.end());
-			std::cout << arr_s << std::endl;
+			std::size_t found = arr_s.find(".dll");
+			if (found != std::string::npos)
+			{
+				std::cout << arr_s << std::endl;
+				std::string libName = arr_s.substr(0, std::size(arr_s) - 4);
+				std::cout << libName << std::endl;
+				this->load(libName);
+			}
 		}
 	} while (FindNextFile(hFind, &ffd) != 0);
 
