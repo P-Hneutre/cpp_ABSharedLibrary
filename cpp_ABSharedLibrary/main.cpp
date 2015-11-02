@@ -1,13 +1,16 @@
 #include "IAnimal.hh"
+#include "IDlManager.hpp"
 #include "IDlLoader.hpp"
 
 #ifdef __unix__
 
 #include "UDlLoader.hpp"
+#include "UDlManager.hpp"
 
 #elif defined _WIN32
 
 #include "WDlLoader.hpp"
+#include "WDlManager.hpp"
 
 #endif
 
@@ -15,16 +18,16 @@ int	main(int ac, char **av)
 {
 	try
 	{
-		IAnimal	*animal_module;
 #ifdef __unix__
-		IDlLoader<IAnimal> *loader = new UDlLoader<IAnimal>("../plugins/Platypus.so");
+		IDlManager<IAnimal> *dl = new UDlManager<IAnimal>();
 #elif defined _WIN32
-		IDlLoader<IAnimal> *loader = new WDlLoader<IAnimal>("../plugins/Armadillo.dll");
+		IDlManager<IAnimal> *dl = new WDlManager<IAnimal>();
 #endif
-		loader->open();
-		animal_module = loader->getInstance();
-		animal_module->scream();
-		loader->close();
+		dl->load("Armadillo");
+		dl->load("Platypus");
+		dl->loadAll("../plugins/");
+		dl->getObject("Platypus")->scream();
+		dl->getObject("Armadillo")->scream();
 	}
 	catch (const std::exception& e)
 	{

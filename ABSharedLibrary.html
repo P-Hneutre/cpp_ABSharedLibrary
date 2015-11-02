@@ -23,11 +23,11 @@
         interface IDlManager {
             load(name : String) -> void
             loadAll(nameDir : String) -> void
-            getObject(namelibrary : String, nameObject : String) -> T*
+            getObject(namelibrary : String) -> T*
         }
 
         abstract class ADlManager {
-            # plugins : map(String, IDlLoader)
+            # plugins : map(namelibrary : String, IObject : T)
         }
 
         class UDlLoader {

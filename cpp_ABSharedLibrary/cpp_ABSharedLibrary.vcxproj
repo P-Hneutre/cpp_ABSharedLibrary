@@ -148,8 +148,11 @@
   <ItemGroup>
     <ClInclude Include="IAnimal.hh" />
     <ClInclude Include="IDlLoader.hpp" />
+    <ClInclude Include="IDlManager.hpp" />
     <ClInclude Include="UDlLoader.hpp" />
+    <ClInclude Include="UDlManager.hpp" />
     <ClInclude Include="WDlLoader.hpp" />
+    <ClInclude Include="WDlManager.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

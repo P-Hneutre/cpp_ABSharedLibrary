@@ -63,7 +63,6 @@ template<typename T>
 void WDlLoader<T>::open()
 {
 	_handle = LoadLibraryA(_filename.c_str());
-	std::cout << _handle << std::endl;
 	if (_handle == NULL)
 		throw std::runtime_error("Error : dlopen " + _filename);
 }
