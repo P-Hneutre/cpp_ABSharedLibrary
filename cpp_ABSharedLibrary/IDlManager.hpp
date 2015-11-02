@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-#define DIR "../plugins/"
+#define DIR_NAME "../plugins/"
 
 template <typename T>
 class IDlManager

@@ -45,8 +45,8 @@ WDlManager<T>::~WDlManager()
 template<typename T>
 void WDlManager<T>::load(std::string const & name)
 {
-	std::cout << "lib = " << DIR + name + ".dll" << std::endl;
-	_loaders.insert(std::make_pair(name, new WDlLoader<T>(DIR + name + ".dll")));
+	std::cout << "lib = " << DIR_NAME + name + ".dll" << std::endl;
+	_loaders.insert(std::make_pair(name, new WDlLoader<T>(DIR_NAME + name + ".dll")));
 	_loaders.find(name)->second->open();
 	std::cout << "name _loaders = " << _loaders.find(name)->first << std::endl;
 	_plugins.insert(std::make_pair(name, _loaders.find(name)->second->getInstance()));
