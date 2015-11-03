@@ -18,7 +18,6 @@ PLATYPUS	:
 
 $(NAME)		:	$(OBJ)
 			g++ $(OBJ) -o $(NAME) $(LDFLAGS)
-			mv $(NAME) ..
 
 clean		:
 			rm -rf $(OBJ)
@@ -26,7 +25,7 @@ clean		:
 			make clean -C ../Platypus
 
 fclean		:	clean
-			rm -rf ../$(NAME)
+			rm -rf $(NAME)
 			make fclean -C ../Armadillo
 			make fclean -C ../Platypus
 
