@@ -31,23 +31,24 @@ UDlManager<T>::UDlManager()
 template<typename T>
 UDlManager<T>::~UDlManager()
 {
-	std::map<std::string, IDlLoader<T>*>::iterator it = _loaders.begin();
+	typename
+	std::map<std::string, IDlLoader<T>*>::iterator itLoader = _loaders.begin();
 
-	while (it != _loaders.end()) {
-		it->second->close();
-		it++;
+	while (itLoader != _loaders.end()) {
+		itLoader->second->close();
+		itLoader++;
 	}
 }
 
 template<typename T>
 void UDlManager<T>::load(std::string const & name, std::string const &nameDir)
 {
-	//std::cout << "lib = " << nameDir + name + ".so" << std::endl;
-	_loaders.insert(std::make_pair(name, new WDlLoader<T>(nameDir + name + ".so")));
+	std::cout << "lib = " << nameDir + name + ".so" << std::endl;
+	_loaders.insert(std::make_pair(name, new UDlLoader<T>(nameDir + name + ".so")));
 	_loaders.find(name)->second->open();
-	//std::cout << "name _loaders = " << _loaders.find(name)->first << std::endl;
+	std::cout << "name _loaders = " << _loaders.find(name)->first << std::endl;
 	_plugins.insert(std::make_pair(name, _loaders.find(name)->second->getInstance()));
-	//std::cout << "name _ plugins = " << _plugins.find(name)->first << std::endl;
+	std::cout << "name _ plugins = " << _plugins.find(name)->first << std::endl;
 }
 
 template<typename T>
@@ -76,5 +77,7 @@ void UDlManager<T>::loadAll(std::string const & dirName)
 template<typename T>
 T * UDlManager<T>::getObject(std::string const & name) const
 {
-	return _plugins.find(name)->second;
+	if (_plugins.find(name) != _plugins.end())
+		return _plugins.find(name)->second;
+	throw std::runtime_error("Error : getObject " + name + " not found");
 }

@@ -23,7 +23,8 @@ int	main(int ac, char **av)
 #elif defined _WIN32
 		IDlManager<IAnimal> *dl = new WDlManager<IAnimal>();
 #endif
-		dl->loadAll("../plugins/");
+		dl->load("Platypus");
+		dl->load("Armadillo");
 		dl->getObject("Platypus")->scream();
 		dl->getObject("Armadillo")->scream();
 

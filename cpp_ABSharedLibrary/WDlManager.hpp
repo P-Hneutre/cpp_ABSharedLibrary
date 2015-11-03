@@ -40,7 +40,6 @@ WDlManager<T>::~WDlManager()
 		itLoader->second->close();
 		itLoader++;
 	}
-
 }
 
 template<typename T>
@@ -109,5 +108,7 @@ void WDlManager<T>::loadAll(std::string const & dirName)
 template<typename T>
 T * WDlManager<T>::getObject(std::string const & name) const
 {
-	return _plugins.find(name)->second;
+	if (_plugins.find(name) != _plugins.end())
+		return _plugins.find(name)->second;
+	throw std::runtime_error("Error : getObject " + name + " not found");
 }
