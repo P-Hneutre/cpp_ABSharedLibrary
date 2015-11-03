@@ -16,7 +16,7 @@ class WDlManager : public IDlManager<T>
 		virtual ~WDlManager();
 
 	public:
-		void	load(std::string const &name);
+		void	load(std::string const &name, std::string const &nameDir = "../plugins/");
 		void	loadAll(std::string const &dirName);
 		T*		getObject(std::string const &name) const;
 
@@ -34,23 +34,24 @@ WDlManager<T>::WDlManager()
 template<typename T>
 WDlManager<T>::~WDlManager()
 {
-	/*std::map<std::string, IDlLoader<T>*>::iterator it = _loaders.begin();
+	std::map<std::string, IDlLoader<T>*>::iterator itLoader = _loaders.begin();
 
-	while (it != _loaders.end()) {
-		std::cout << "ok";
-		it->second->close();
-	}*/
+	while (itLoader != _loaders.end()) {
+		itLoader->second->close();
+		itLoader++;
+	}
+
 }
 
 template<typename T>
-void WDlManager<T>::load(std::string const & name)
+void WDlManager<T>::load(std::string const & name, std::string const &nameDir)
 {
-	std::cout << "lib = " << DIR + name + ".dll" << std::endl;
-	_loaders.insert(std::make_pair(name, new WDlLoader<T>(DIR + name + ".dll")));
+	//std::cout << "lib = " << nameDir + name + ".dll" << std::endl;
+	_loaders.insert(std::make_pair(name, new WDlLoader<T>(nameDir + name + ".dll")));
 	_loaders.find(name)->second->open();
-	std::cout << "name _loaders = " << _loaders.find(name)->first << std::endl;
+	//std::cout << "name _loaders = " << _loaders.find(name)->first << std::endl;
 	_plugins.insert(std::make_pair(name, _loaders.find(name)->second->getInstance()));
-	std::cout << "name _ plugins = " << _plugins.find(name)->first << std::endl;
+	//std::cout << "name _ plugins = " << _plugins.find(name)->first << std::endl;
 }
 
 std::wstring s2ws(const std::string& s)
@@ -94,10 +95,10 @@ void WDlManager<T>::loadAll(std::string const & dirName)
 			std::size_t found = arr_s.find(".dll");
 			if (found != std::string::npos)
 			{
-				std::cout << arr_s << std::endl;
-				std::string libName = arr_s.substr(0, std::size(arr_s) - 4);
-				std::cout << libName << std::endl;
-				this->load(libName);
+				//std::cout << arr_s << std::endl;
+				std::string libName = arr_s.substr(0, arr_s.size() - 4);
+				//std::cout << libName << std::endl;
+				this->load(libName, dirName);
 			}
 		}
 	} while (FindNextFile(hFind, &ffd) != 0);
