@@ -2,10 +2,11 @@
 
 #include <sys/types.h>
 #include <dirent.h>
+#include <map>
 #include "IDlManager.hpp"
 
 template <typename T>
-class UDlManager : public IDlManager
+class UDlManager : public IDlManager<T>
 {
 	public:
 		UDlManager();
@@ -22,13 +23,13 @@ class UDlManager : public IDlManager
 };
 
 template<typename T>
-UDlManager::UDlManager()
+UDlManager<T>::UDlManager()
 {
 
 }
 
 template<typename T>
-UDlManager::~UDlManager()
+UDlManager<T>::~UDlManager()
 {
 	std::map<std::string, IDlLoader<T>*>::iterator it = _loaders.begin();
 
@@ -39,7 +40,7 @@ UDlManager::~UDlManager()
 }
 
 template<typename T>
-void UDlManager::load(std::string const & name, std::string const &nameDir)
+void UDlManager<T>::load(std::string const & name, std::string const &nameDir)
 {
 	//std::cout << "lib = " << nameDir + name + ".so" << std::endl;
 	_loaders.insert(std::make_pair(name, new WDlLoader<T>(nameDir + name + ".so")));
@@ -50,30 +51,30 @@ void UDlManager::load(std::string const & name, std::string const &nameDir)
 }
 
 template<typename T>
-void UDlManager::loadAll(std::string const & dirName)
+void UDlManager<T>::loadAll(std::string const & dirName)
 {
 	DIR *dp;
 	struct dirent *dirp;
 
-	if ((dp = opendir(dir.c_str())) == NULL)
+	if ((dp = opendir(dirName.c_str())) == NULL)
 		throw std::runtime_error("Error : opendir " + dirName);
 
 	while ((dirp = readdir(dp)) != NULL) {
 		std::string s(dirp->d_name);
-		std::size_t found = arr_s.find(".so");
+		std::size_t found = s.find(".so");
 		if (found != std::string::npos)
 		{
-			//std::cout << arr_s << std::endl;
-			std::string libName = arr_s.substr(0, std::size(arr_s) - 3);
-			//std::cout << libName << std::endl;
-			this->load(libName, dirName);
+			std::cout << s << std::endl;
+			std::string libName = s.substr(0, s.size() - 3);
+			std::cout << libName << std::endl;
+			this->load(libName);
 		}
 	}
 	closedir(dp);
 }
 
 template<typename T>
-T * UDlManager::getObject(std::string const & name) const
+T * UDlManager<T>::getObject(std::string const & name) const
 {
 	return _plugins.find(name)->second;
 }
